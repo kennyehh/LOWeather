@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOWeather</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='walleye.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <section class="card">
+      <h1>Wheeler's Point</h1>
+      {% if weather %}
+      <div class="reading">
+        <span class="value">{{ weather.temperature }}&deg;F</span>
+        <span class="label">Temperature</span>
+      </div>
+      <div class="reading">
+        <span class="arrow" style="transform: rotate({{ weather.wind_degrees }}deg)">&uarr;</span>
+        <span class="value">{{ weather.wind_speed }} mph {{ weather.wind_direction }}</span>
+        <span class="label">Wind</span>
+      </div>
+      <div class="reading">
+        <span class="value">{{ weather.wind_gusts }} mph</span>
+        <span class="label">Wind Gusts</span>
+      </div>
+      <div class="reading">
+        <span class="value">{{ weather.humidity }}%</span>
+        <span class="label">Humidity</span>
+      </div>
+      <div class="reading">
+        <span class="value">{{ weather.visibility }} mi</span>
+        <span class="label">Visibility</span>
+      </div>
+      <div class="reading">
+        <span class="value">{{ weather.precip_probability }}%</span>
+        <span class="label">Chance of Precipitation</span>
+      </div>
+      {% else %}
+      <p class="unavailable">Weather data unavailable</p>
+      {% endif %}
+    </section>
+
+    {% if weather %}
+    <section class="card">
+      <h1>Past 5 Days Precipitation</h1>
+      {% for date, amount in weather.past_precip %}
+      <div class="reading">
+        <span class="value small">{{ date }}</span>
+        <span class="value">{{ amount }} in</span>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="card">
+      <h1>Big Traverse Bay</h1>
+      {% if wave %}
+      <div class="reading">
+        <span class="value">{{ "%.2f"|format(wave.height) }} ft</span>
+        <span class="label">Wave Height</span>
+      </div>
+      <div class="reading">
+        <span class="arrow" style="transform: rotate({{ wave.degrees }}deg)">&uarr;</span>
+        <span class="value">{{ wave.direction }}</span>
+        <span class="label">Wave Direction</span>
+      </div>
+      <div class="reading">
+        <span class="value small">{{ wave.time }}</span>
+        <span class="label">Last Reading</span>
+      </div>
+      {% else %}
+      <p class="unavailable">Wave data unavailable</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>
