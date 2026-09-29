@@ -1,0 +1,7 @@
+services:
+  loweather:
+    build: .
+    container_name: loweather
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
