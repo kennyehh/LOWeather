@@ -71,3 +71,17 @@ h1 {
 .unavailable {
   color: #9fb3c8;
 }
+
+a {
+  color: #9fb3c8;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #9fb3c8;
+}
+
+a:active {
+  color: #f2f5f7;
+}
