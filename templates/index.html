@@ -25,7 +25,8 @@
     </section>
 
     <section class="card">
-      <h1>Current Weather - Wheeler's Point</h1>
+      <h1>Current Weather</h1>
+      <h2>Wheeler's Point</h2>
       {% if weather %}
       <div class="reading">
         <span class="value">{{ weather.temperature }}&deg;F</span>
@@ -115,7 +116,7 @@
 
     <!-- Bottom row: 5 day forecast -->
     <section class="card list">
-      <h1>5 Day Precipitation Chance & Duration</h1>
+      <h1>Precipitation Chance & Duration</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
@@ -126,7 +127,7 @@
     </section>
 
     <section class="card list">
-      <h1>5 Day Temperature High/Low | Sunrise/Sunset</h1>
+      <h1>Temp High/Low | Sunrise/Sunset</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
@@ -137,7 +138,7 @@
     </section>
 
     <section class="card list">
-      <h1>5 Day Wind Forecast</h1>
+      <h1>Wind Forecast</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
@@ -150,8 +151,9 @@
     {% endif %}
 
     <section class="card centered">
-      <h1>LOW Fishing Report</h1>
-      <a href="https://lakeofthewoodsmn.com/lake-of-the-woods-rainy-river-fishing-report/" target="_blank" rel="noopener">View Report</a>
+      <h1><a href="https://lakeofthewoodsmn.com/lake-of-the-woods-rainy-river-fishing-report/" target="_blank" rel="noopener">LOW Fishing Report</a></h1>
+      <h1><a href="https://lakeofthewoodsmn.com/rainy-river-web-camera/" target="_blank" rel="noopener">Rainy River Web Camera</a></h1>
+      <h1><a href="https://www.dnr.state.mn.us/ice_in/index.html/" target="_blank" rel="noopener">LOW Ice Report</a></h1>
     </section>
   </main>
 </body>
