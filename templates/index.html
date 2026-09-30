@@ -9,6 +9,21 @@
 </head>
 <body>
   <main>
+    <!-- Top row: past precipitation, current conditions, wave buoy -->
+    <section class="card">
+      <h1>Past 5 Days Precipitation</h1>
+      {% if weather %}
+      {% for date, amount in weather.past_precip %}
+      <div class="reading">
+        <span class="value small">{{ date }}</span>
+        <span class="value">{{ amount }} in</span>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p class="unavailable">Weather data unavailable</p>
+      {% endif %}
+    </section>
+
     <section class="card">
       <h1>Wheeler's Point</h1>
       {% if weather %}
@@ -26,33 +41,21 @@
         <span class="label">Wind Gusts</span>
       </div>
       <div class="reading">
-        <span class="value">{{ weather.humidity }}%</span>
-        <span class="label">Humidity</span>
-      </div>
-      <div class="reading">
-        <span class="value">{{ weather.visibility }} mi</span>
-        <span class="label">Visibility</span>
-      </div>
-      <div class="reading">
         <span class="value">{{ weather.precip_probability }}%</span>
         <span class="label">Chance of Precipitation</span>
+      </div>
+      <div class="reading">
+        <span class="value small">{{ weather.sunrise }}</span>
+        <span class="label">Sunrise</span>
+      </div>
+      <div class="reading">
+        <span class="value small">{{ weather.sunset }}</span>
+        <span class="label">Sunset</span>
       </div>
       {% else %}
       <p class="unavailable">Weather data unavailable</p>
       {% endif %}
     </section>
-
-    {% if weather %}
-    <section class="card">
-      <h1>Past 5 Days Precipitation</h1>
-      {% for date, amount in weather.past_precip %}
-      <div class="reading">
-        <span class="value small">{{ date }}</span>
-        <span class="value">{{ amount }} in</span>
-      </div>
-      {% endfor %}
-    </section>
-    {% endif %}
 
     <section class="card">
       <h1>Big Traverse Bay</h1>
@@ -75,7 +78,78 @@
       {% endif %}
     </section>
 
-    <section class="card">
+    {% if weather %}
+    <!-- Middle row: hourly forecast -->
+    <section class="card list">
+      <h1>Hourly Precipitation</h1>
+      {% for hour in weather.hourly %}
+      <div class="reading">
+        <span class="value small">{{ hour.hour }}</span>
+        <span class="value">{{ hour.precipitation }} in</span>
+        <span class="label">{{ hour.precip_probability }}%</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card list">
+      <h1>Hourly Temperature</h1>
+      {% for hour in weather.hourly %}
+      <div class="reading">
+        <span class="value small">{{ hour.hour }}</span>
+        <span class="value">{{ hour.temperature }}&deg;F</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card list">
+      <h1>Hourly Wind</h1>
+      {% for hour in weather.hourly %}
+      <div class="reading">
+        <span class="value small">{{ hour.hour }}</span>
+        <span class="arrow" style="transform: rotate({{ hour.wind_degrees }}deg)">&uarr;</span>
+        <span class="value">{{ hour.wind_speed }} mph {{ hour.wind_direction }}</span>
+        <span class="label">Gusts {{ hour.wind_gusts }} mph</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- Bottom row: 5 day forecast -->
+    <section class="card list">
+      <h1>5 Day Precipitation</h1>
+      {% for day in weather.forecast %}
+      <div class="reading">
+        <span class="value small">{{ day.day }}</span>
+        <span class="value">{{ day.precip_probability_max }}%</span>
+        <span class="label">{{ day.precip_hours }} hrs</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card list">
+      <h1>5 Day Temperature</h1>
+      {% for day in weather.forecast %}
+      <div class="reading">
+        <span class="value small">{{ day.day }}</span>
+        <span class="value">{{ day.temp_max }}&deg; / {{ day.temp_min }}&deg;</span>
+        <span class="label">{{ day.sunrise }} &ndash; {{ day.sunset }}</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card list">
+      <h1>5 Day Wind</h1>
+      {% for day in weather.forecast %}
+      <div class="reading">
+        <span class="value small">{{ day.day }}</span>
+        <span class="arrow" style="transform: rotate({{ day.wind_degrees }}deg)">&uarr;</span>
+        <span class="value">{{ day.wind_speed_max }} mph {{ day.wind_direction }}</span>
+        <span class="label">Gusts {{ day.wind_gusts_max }} mph</span>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="card centered">
       <h1>LOW Fishing Report</h1>
       <a href="https://lakeofthewoodsmn.com/lake-of-the-woods-rainy-river-fishing-report/" target="_blank" rel="noopener">View Report</a>
     </section>
