@@ -11,20 +11,6 @@
   <main>
     <!-- Top row: past precipitation, current conditions, wave buoy -->
     <section class="card">
-      <h1>Past 5 Days Precipitation</h1>
-      {% if weather %}
-      {% for date, amount in weather.past_precip %}
-      <div class="reading">
-        <span class="value small">{{ date }}</span>
-        <span class="value">{{ amount }} in</span>
-      </div>
-      {% endfor %}
-      {% else %}
-      <p class="unavailable">Weather data unavailable</p>
-      {% endif %}
-    </section>
-
-    <section class="card">
       <h1>Current Weather</h1>
       <h1>Wheeler's Point</h1>
       {% if weather %}
@@ -76,6 +62,20 @@
       </div>
       {% else %}
       <p class="unavailable">Wave data unavailable</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <h1>Past 5 Days Precipitation</h1>
+      {% if weather %}
+      {% for date, amount in weather.past_precip %}
+      <div class="reading">
+        <span class="value small">{{ date }}</span>
+        <span class="value">{{ amount }} in</span>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p class="unavailable">Weather data unavailable</p>
       {% endif %}
     </section>
 
