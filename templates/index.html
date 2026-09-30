@@ -25,7 +25,7 @@
     </section>
 
     <section class="card">
-      <h1>Wheeler's Point</h1>
+      <h1>Current Weather - Wheeler's Point</h1>
       {% if weather %}
       <div class="reading">
         <span class="value">{{ weather.temperature }}&deg;F</span>
@@ -58,7 +58,7 @@
     </section>
 
     <section class="card">
-      <h1>Big Traverse Bay</h1>
+      <h1>Big Traverse Bay Wave Buoy</h1>
       {% if wave %}
       <div class="reading">
         <span class="value">{{ "%.2f"|format(wave.height) }} ft</span>
@@ -115,7 +115,7 @@
 
     <!-- Bottom row: 5 day forecast -->
     <section class="card list">
-      <h1>5 Day Precipitation</h1>
+      <h1>5 Day Precipitation Chance & Duration</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
@@ -126,7 +126,7 @@
     </section>
 
     <section class="card list">
-      <h1>5 Day Temperature</h1>
+      <h1>5 Day Temperature High/Low | Sunrise/Sunset</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
@@ -137,7 +137,7 @@
     </section>
 
     <section class="card list">
-      <h1>5 Day Wind</h1>
+      <h1>5 Day Wind Forecast</h1>
       {% for day in weather.forecast %}
       <div class="reading">
         <span class="value small">{{ day.day }}</span>
