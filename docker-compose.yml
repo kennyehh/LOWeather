@@ -3,5 +3,6 @@ services:
     build: .
     container_name: loweather
     restart: unless-stopped
+    # specified the external IP and port for DMZ access
     ports:
-      - "8090:8090"
+      - "192.168.20.174:8090:8090"
